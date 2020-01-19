@@ -1,0 +1,26 @@
+<!-- load the folder 'static'-->
+<!-- para cargar archivos estáticos imagenes, estilos css, etc... utilizamos {% load static %}-->
+
+{% load static %}
+
+<!--Use the {% static '<URL>'%}-->
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+
+    </ul>
+
+<!--Use the {% static '<URL>'%} for show the images from images folder-->
+    <img src="{% static 'polls/images/sky.jpg' %}" width="500px" alt="sky_image">
+    <img src="{% static 'polls/images/logo.png' %}" width="500px" alt="logo_image">
+    {{ ln }}
+{% else %}
+    <p>No polls are available.</p>
+
+{% endif %}
+
